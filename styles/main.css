@@ -1,0 +1,51 @@
+/* styles/main.css - custom CSS for Daily Journal app */
+:root{
+  --bg:#f8fafc;
+  --accent:#4f46e5;
+  --muted:#6b7280;
+}
+html,body{height:100%;}
+body{background:var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;} 
+
+/* Bento grid: mixed-size cards */
+.bento-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-auto-rows: 110px;
+  gap:16px;
+}
+
+.bento-grid .entry-card{
+  display:flex;
+  flex-direction:column;
+  padding:14px;
+  border-radius:10px;
+  background:white;
+  box-shadow:0 6px 18px rgba(15,23,42,0.06);
+  overflow:hidden;
+}
+
+/* Create variation: some cards span more rows for visual interest */
+.bento-grid .entry-card.large{ grid-row: span 2; }
+.bento-grid .entry-card.tall{ grid-row: span 2; }
+
+.entry-title{font-weight:600;color:#111827;margin-bottom:6px;}
+.entry-content{color:var(--muted);font-size:13px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;}
+.entry-meta{margin-top:8px;display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+.entry-meta .mood{font-size:18px}
+
+.btn-ghost{background:white;border:1px solid #e6e9ef;padding:6px 10px;border-radius:8px}
+
+/* Modal */
+#edit-modal{transition:opacity 220ms ease;}
+
+/* Accessibility focus */
+button:focus, input:focus, textarea:focus, select:focus{outline:2px solid rgba(79,70,229,0.18);outline-offset:2px}
+
+/* Responsive tweaks */
+@media (max-width:768px){
+  .bento-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:100px}
+}
+@media (max-width:420px){
+  .bento-grid{grid-template-columns:repeat(1,1fr)}
+}

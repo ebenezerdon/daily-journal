@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Daily Journal — Capture your day</title>
+  <meta name="description" content="Daily Journal: tag entries, log mood, and quickly find moments. Built with focus on clarity and calm design.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link rel="stylesheet" href="styles/main.css">
+  <style type="text/tailwindcss" data-teda="tailwind-apply">
+    @layer components {
+      .btn-primary { @apply bg-indigo-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-300; }
+      .btn-ghost { @apply bg-white border border-gray-200 px-3 py-1.5 rounded-md text-sm text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-100; }
+      .card { @apply bg-white rounded-lg shadow-sm p-4; }
+      .tag { @apply inline-flex items-center bg-indigo-50 text-indigo-700 text-xs font-medium px-2 py-0.5 rounded-full mr-2 mb-2; }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased leading-relaxed">
+  <header class="max-w-6xl mx-auto px-6 py-8 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3 focus:outline-none" aria-label="Daily Journal Home">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="rounded-md bg-indigo-600 p-1 text-white">
+        <path d="M3 7h18M3 12h18M3 17h11" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <div>
+        <div class="text-lg font-semibold">Daily Journal</div>
+        <div class="text-xs text-gray-500">Capture, tag and reflect</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-3">
+      <a href="app.html" class="btn-primary" aria-label="Open Journal App">Open the App</a>
+      <a href="README.md" class="btn-ghost" aria-label="Read documentation">Docs</a>
+    </nav>
+    <button class="md:hidden btn-primary" id="open-app-mobile">Open</button>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6 pb-14">
+    <!-- Hero: bento-box style grid -->
+    <section class="grid grid-cols-6 gap-4 mb-12" aria-labelledby="hero-heading">
+      <div class="col-span-6 md:col-span-4 row-span-2 bg-white card relative overflow-hidden" style="min-height:220px;">
+        <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(99,102,241,0.06),transparent)] pointer-events-none"></div>
+        <div class="p-8 h-full flex flex-col justify-between">
+          <div>
+            <h1 id="hero-heading" class="text-3xl md:text-4xl font-extrabold text-gray-900">A calmer way to journal, every day</h1>
+            <p class="mt-3 text-gray-600 max-w-prose">Quickly capture a thought, tag it, and mark how you feel. Powerful search helps you rediscover moments later.</p>
+          </div>
+          <div class="mt-4 flex items-center gap-3">
+            <a href="app.html" class="btn-primary" aria-label="Start journaling now">Start journaling</a>
+            <a href="#features" class="btn-ghost" aria-label="Explore features">See features</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-span-6 md:col-span-2 bg-white card" style="min-height:220px;">
+        <h3 class="font-semibold">Today's snapshot</h3>
+        <p class="mt-2 text-sm text-gray-600">Capture a quick line, pick your mood, and tag it. Your journal syncs locally for privacy.</p>
+        <div class="mt-4">
+          <div class="flex gap-2 items-center">
+            <div class="px-3 py-2 bg-indigo-50 rounded-md text-indigo-700">😊</div>
+            <div class="text-sm">Mood tagging</div>
+          </div>
+          <div class="mt-3 flex gap-2 items-center">
+            <div class="px-3 py-2 bg-yellow-50 rounded-md text-yellow-700">🏷️</div>
+            <div class="text-sm">Organize with tags</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-span-3 md:col-span-2 bg-white card" style="min-height:120px;">
+        <h4 class="font-semibold">Privacy first</h4>
+        <p class="text-sm text-gray-600 mt-2">All data is saved locally to your browser. Export and import anytime.</p>
+      </div>
+
+      <div class="col-span-3 md:col-span-2 bg-white card" style="min-height:120px;">
+        <h4 class="font-semibold">Fast search</h4>
+        <p class="text-sm text-gray-600 mt-2">Search by text, tag, or mood to find the exact memory you want.</p>
+      </div>
+    </section>
+
+    <section id="features" class="mb-12">
+      <div class="bg-white card">
+        <h2 class="text-2xl font-bold">Features that help you keep going</h2>
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-4 border rounded-lg">
+            <h3 class="font-semibold">Rich entries</h3>
+            <p class="text-sm text-gray-600 mt-2">Titles, long-form content, and multiple tags per entry for flexible organization.</p>
+          </div>
+          <div class="p-4 border rounded-lg">
+            <h3 class="font-semibold">Mood tracking</h3>
+            <p class="text-sm text-gray-600 mt-2">Quick emoji mood picks let you reflect over time with minimal friction.</p>
+          </div>
+          <div class="p-4 border rounded-lg">
+            <h3 class="font-semibold">Instant search</h3>
+            <p class="text-sm text-gray-600 mt-2">Filter by text, tag, or mood. Results update as you type.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="mt-12 text-center text-sm text-gray-500">
+      Built with care by <a href="https://teda.dev" class="underline text-indigo-600">Teda.dev</a>. Your data stays private in your browser.
+    </footer>
+  </main>
+
+  <script>
+    // Mobile quick open
+    $(function(){
+      $('#open-app-mobile').on('click', function(){
+        window.location.href = 'app.html';
+      });
+    });
+  </script>
+  <script src="scripts/helpers.js"></script>
+  <script src="scripts/ui.js"></script>
+  <script src="scripts/main.js"></script>
+</body>
+</html>
